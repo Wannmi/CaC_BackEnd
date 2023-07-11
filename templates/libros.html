@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <title>Biblioteca</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body id="app">
+    <header id="header">
+        <!-- place navbar here -->
+    </header>
+    <main>
+        <div class="container">
+            <br>
+            <h1>Libros</h1>
+            <br>
+            <a v-if="admin" class="btn btn-primary" href="../templates/libro_nuevo.html">Nuevo Libro</a>
+            <br><br>
+            <div v-if="error">
+                <p>Lo sentimos , ........</p>
+            </div>
+            <div v-else>
+                <section v-if="cargando">
+                    <div class="spinner-border"></div>
+                    <p>Cargando .....</p>
+                </section>
+                <section v-else>
+                    <div class="container">
+                        <div class="row d-flex justify-content-around">
+                            <div class="card mb-4" style="width: 18rem;" v-for="libro in libros">
+                                <img :src="libro.imagen" class="card-img-top mt-2" :alt="libro.titulo">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{libro.titulo}}</h5>
+                                    <h6 class="card-title">{{libro.autor}}</h6>
+                                    <!--<p class="card-text"></p>-->
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">{{libro.anio}}</li>
+                                    <li class="list-group-item">Idioma: {{libro.idioma}}</li>
+                                    <li class="list-group-item">Genero: {{libro.genero}}</li>
+                                    <li class="list-group-item">Stock: {{libro.stock}}</li>
+                                </ul>
+                                <div class="card-body d-flex align-items-center justify-content-center">
+                                    <div v-if="admin" class="d-flex justify-content-between">
+                                        <a class="btn btn-primary mx-3"
+                                            :href="'./libro_update.html?id='+ libro.id">Editar</a>
+                                        <button type="button" class="btn btn-danger mx-3"
+                                            v-on:click="eliminar(libro.id)">Eliminar</button>
+                                    </div>
+                                    <div v-else>
+                                        <button type="button" class="btn btn-outline-primary"
+                                            v-on:click="showMessage">Reservar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <!-- place footer here -->
+    </footer>
+    <script>
+        <!--Link de Bootstrap-->
+        src = "https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity = "sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin = "anonymous"</script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+        crossorigin="anonymous"></script>
+    <script src="../js/main.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script><!--Link de VUE-->
+    <script src="../js/libros.js"></script>
+</body>
+
+</html>
+
+<!--
+    - Render - https://render.com –
+ Railway -https://railway.app –
+ Cyclic - https://cyclic.sh
+Vercel.com 
+ Fly.io
+-->
