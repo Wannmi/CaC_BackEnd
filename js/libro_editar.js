@@ -59,7 +59,7 @@ createApp({
             fetch(this.url, options)
                 .then(function () {
                     alert("Registro modificado")
-                    window.location.href = "../templates/libros.html";
+                    window.location.href = "../index.html";
                 })
                 .catch(err => {
                     console.error(err);
